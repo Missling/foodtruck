@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'soda-ruby', :require => 'soda'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'httparty'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
