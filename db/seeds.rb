@@ -6,6 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-response = HTTParty.get('https://data.sfgov.org/resource/rqzj-sfat.json')
+responses = HTTParty.get('https://data.sfgov.org/resource/rqzj-sfat.json?status=approved')
 
+responses.each do |response|
+  name = response['applicant']
+  longitude = response['longitude']
+  latitude = response['latitude']
+  description = response['fooditems'].gsub!(/:/, ',')
+  location1 = response['address'].split(" ").first
+  location2 = response['locationdescription']
 
+  truck = Foodtruck.create(name: name, longitude: longitude, latitude: latitude, description: description, address: location1 + " " + location2)
+  truck.save!
+end 
