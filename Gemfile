@@ -28,6 +28,8 @@ gem 'soda-ruby', :require => 'soda'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'httparty'
+
+gem 'gon'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

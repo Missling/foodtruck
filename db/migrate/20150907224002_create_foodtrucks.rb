@@ -3,8 +3,8 @@ class CreateFoodtrucks < ActiveRecord::Migration
     create_table :foodtrucks do |t|
       t.string :name
       t.string :address
-      t.integer :longitude
-      t.integer :latitude
+      t.float :longitude
+      t.float :latitude
       t.string :description
 
       t.timestamps null: false
