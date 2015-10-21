@@ -12,7 +12,7 @@
 
     <% @foodtrucks.each do |foodtruck| %>
       <div class='block'>
-        <div>Name: <%= foodtruck.name %></div>
+        <div id='name'>Name: <%= foodtruck.name %></div>
         <div>Address: <%= foodtruck.address %></div>
         <% if foodtruck.description %>
           <div>Menus: <%= foodtruck.description %></div>
