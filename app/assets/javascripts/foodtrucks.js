@@ -1,4 +1,4 @@
-function initMap() {
+function initMap(){
   var myLatLng = {lat: 37.7833, lng: -122.4167};
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -7,47 +7,46 @@ function initMap() {
   });
 
   var trucks = gon.foodtrucks
+  var markers = []
 
   for (var i = 0; i < trucks.length; i ++) {
     var coordinate = { lat: parseFloat(trucks[i].latitude), lng: parseFloat(trucks[i].longitude)}
 
-      var marker = new google.maps.Marker({
-        position: coordinate,
-        map: map,
-      });
-  };
-
-  // google.maps.event.addListener(marker,'click', function() {
-  //   var contentString = '<div class=specific_food><p>hello</p></div>'
-  //   var infoWindow = new google.maps.InfoWindow({
-  //       content: contentString
-  //   });
-  //   infoWindow.close();
-  //   infoWindow.open(map, this);
-  // });
-
-
-
-  google.maps.event.addListener(marker, 'click', function() {
-
-
-    debugger
-
-    var contentString = '<div id="content">'+
-        '<p>stuff</p>'+'</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
+    var marker = new google.maps.Marker({
+      position: coordinate,
+      map: map,
+      description: trucks[i].description,
+      name: trucks[i].name,
     });
 
-    infowindow.open(map, this); //this should be marker
-  });
+    markers.push(marker)
+
+    google.maps.event.addListener(marker, 'mouseover', function(){
+
+      var contentString = '<div id="content">'+
+          '<p>'+'food truck: '+this.name+'</p>'+'<p>'+'menu: ' +this.description+'</p>'+'</div>';
+      marker.infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      marker.infowindow.open(map, this);
+    });
+
+    google.maps.event.addListener(marker, 'mouseout', function() {
+      marker.infowindow.close();
+    });
+  }; 
+};
 
 
-}
 
-  $('#name').on('click', function(){
-    console.log("hello")
-  });
+
+
+
+
+
+
+
+
+
 
 

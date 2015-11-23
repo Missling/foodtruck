@@ -3,7 +3,7 @@ require 'httparty'
 class FoodtrucksController < ApplicationController
 
   def index 
-    @foodtrucks = Foodtruck.all
-    gon.foodtrucks = Foodtruck.all
+    @foodtrucks = Foodtruck.limit(3)
+    gon.foodtrucks = Foodtruck.limit(3)
   end
 end
